@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GameVerse - Videójáték-bemutató</title>
+
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+
+  <link rel="stylesheet" href="css/style.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Poppins:wght@300;400;600&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* Globális változók definiálása a könnyű színkezeléshez */
+    :root {
+      --accent: #6ee7ff;
+    }
+
+    /* Alapvető oldal beállítások */
+    body {
+      margin: 0;
+      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: #121212;
+      /* Sötét téma alapszíne */
+      color: #eaeaea;
+      /* Világos szövegszín a kontraszt miatt */
+      line-height: 1.6;
+    }
+
+    /* MENÜ STÍLUSOK */
+    /* A sticky pozíció miatt a menü görgetéskor is felül marad */
+    #menu {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #1c1c1c;
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
+      backdrop-filter: blur(6px);
+      /* Homályosítás a menü mögött */
+    }
+
+    #menu .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      /* Flexbox a vízszintes elrendezéshez */
+    }
+
+    #menu a.logo {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 800;
+      text-decoration: none;
+      color: var(--accent);
+      /* A változó használata */
+      letter-spacing: .5px;
+    }
+
+    #menu ul {
+      list-style: none;
+      margin: 0 0 0 auto;
+      padding: 0;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    #menu ul li a {
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 10px;
+      color: #eaeaea;
+      transition: transform .15s ease, background .15s ease;
+      /* Animáció hover effekthez */
+    }
+
+    /* Interaktív állapotok a menüpontokon */
+    #menu ul li a:hover {
+      background: rgba(255, 255, 255, .08);
+      transform: translateY(-1px);
+    }
+
+    #menu ul li a:active {
+      transform: translateY(0);
+    }
+
+    #menu ul li a:visited {
+      color: #dcdcdc;
+    }
+
+    /* HERO (HŐS) SZEKCIÓ */
+    .hero {
+      max-width: 1100px;
+      margin: 24px auto;
+      padding: 28px 16px 18px;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 24px;
+      /* Grid layout két oszloppal */
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 800;
+      font-size: clamp(28px, 4vw, 44px);
+      /* Reszponzív betűméret */
+      margin: 0 0 10px;
+    }
+
+    .hero p {
+      margin: 0 0 18px;
+    }
+
+    /* CTA (Call To Action) gomb stílusa */
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #0a0a0a;
+      border: 0;
+      padding: 10px 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .cta:focus {
+      outline: 2px solid #fff;
+      outline-offset: 2px;
+    }
+
+    /* KÁRTYA GRID RENDSZER */
+    /* Automatikusan tördeli az oszlopokat a képernyő szélessége alapján */
+    .grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 10px 16px 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .game-card {
+      background: #1b1b1b;
+      border: 1px solid rgba(255, 255, 255, .06);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    /* Hover effekt a kártyákra: kiemelkedés */
+    .game-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, .4);
+    }
+
+    .game-card img {
+      display: block;
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+    }
+
+    .game-card .content {
+      padding: 12px;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .08);
+      margin: 0 0 6px;
+    }
+
+    /* LISTA SZEKCIÓ */
+    .feature-lists {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4px 16px 28px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .feature-lists h3 {
+      margin: 0 0 8px;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    /* ŰRLAP ELEMEK ÉS VALIDÁCIÓS STÍLUSOK */
+    .mini-form {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 8px 16px 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .card {
+      background: #1b1b1b;
+      border: 1px solid rgba(255, 255, 255, .06);
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      margin: 8px 0 4px;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="color"] {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, .12);
+      background: #121212;
+      color: #eaeaea;
+    }
+
+    .btn {
+      margin-top: 10px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      background: #222;
+      color: #eaeaea;
+      padding: 10px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #2a2a2a;
+    }
+
+    /* Hibajelzés stílusa (piros keret) */
+    .error {
+      border-color: #ff5c5c !important;
+      box-shadow: 0 0 0 3px rgba(255, 92, 92, .2);
+    }
+
+    .hint {
+      font-size: 12px;
+      opacity: .8;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, .08);
+      padding: 16px;
+      text-align: center;
+      color: #bdbdbd;
+    }
+
+    /* MÉDIA LEKÉRDEZÉSEK (RESPONSIVITY) */
+    /* 860px alatt az oszlopok egymás alá kerülnek */
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .mini-form {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-lists {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Háttérkép beállítása fix pozícióval (parallax jellegű hatás) */
+    body {
+      background-image: url("assets/background.png");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+  </style>
+</head>
+
+<body>
+  <header id="menu" role="navigation" aria-label="Fő navigáció">
+    <div class="nav">
+      <a class="logo" href="index.html">GameVerse</a>
+
+      <input type="color" id="logoColorPicker" title="Logó színének változtatása" value="#6ee7ff">
+
+      <ul>
+        <li><a href="index.html" aria-current="page">Főoldal</a></li>
+        <li><a href="games.html">Játékok</a></li>
+        <li><a href="review.html">Vélemények</a></li>
+        <li><a href="about.html">Rólunk</a></li>
+        <li><a href="media.html">Videók</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1>Üdv a <span style="color: var(--accent); font-weight: 800;">GameVerse</span> világában!</h1>
+      <p>
+        Fedezd fel a legújabb és klasszikus <span>videójátékokat</span>, olvass véleményeket,
+        és oszd meg tapasztalataid a közösséggel.
+      </p>
+      <button class="cta" id="exploreBtn" type="button">Felfedezem a játékokat →</button>
+      <p class="hint">Tipp: alább ki is próbálhatod a témaszín váltását és egy mini szavazást.</p>
+    </div>
+  </section>
+
+  <section id="featured" aria-label="Kiemelt játékok">
+    <h2>Kiemelt játékok</h2>
+    <div class="featured-grid" id="featuredGrid">
+    </div>
+  </section>
+
+  <section class="feature-lists">
+    <div>
+      <h3>Top 5 funkció a GameVerse-en (számozott lista)</h3>
+      <ol>
+        <li>Játékadatbázis szűrőkkel</li>
+        <li>Közösségi értékelések</li>
+        <li>Részletes leírások és képgaléria</li>
+        <li>Összehasonlító nézet</li>
+        <li>Testreszabható téma szín</li>
+      </ol>
+    </div>
+    <div>
+      <h3>Mit találsz itt? (pontozott lista)</h3>
+      <ul>
+        <li>Friss hírek és megjelenési dátumok</li>
+        <li>Tippek és trükkök kedvenc játékaidhoz</li>
+        <li>Vélemények és értékelések</li>
+        <li>Csapatunk szerkesztett toplistái</li>
+      </ul>
+    </div>
+  </section>
+
+  <div id="quickvoteOverlay" aria-hidden="true"></div>
+
+  <button id="quickvoteToggle" class="fab" type="button" aria-controls="quickvotePanel" aria-expanded="false"
+    title="Gyors szavazás">
+    🗳️
+  </button>
+
+  <section id="quickvotePanel" class="quickvote-panel" hidden aria-label="Gyors szavazás">
+    <header class="panel-head">
+      <h2>Gyors szavazás</h2>
+      <button id="quickvoteClose" class="icon-btn" type="button" aria-label="Bezárás">✕</button>
+    </header>
+
+    <form id="voteForm">
+      <p>Melyik típusú játékokat szereted a legjobban?</p>
+
+      <label><input type="radio" name="genre" value="Akció"> Akció</label>
+      <label><input type="radio" name="genre" value="RPG"> RPG</label>
+      <label><input type="radio" name="genre" value="Stratégia"> Stratégia</label>
+
+      <hr>
+
+      <label class="checkline">
+        <input type="checkbox" id="subscribe" name="subscribe">
+        Szeretnék visszajelzést kapni emailben
+      </label>
+
+      <div id="emailField">
+        <label for="voteEmail">Email cím:</label>
+        <input type="email" id="voteEmail" name="voteEmail" placeholder="pl. te@pelda.hu">
+      </div>
+
+      <button type="submit" class="btn btn-accent full">Szavazok</button>
+    </form>
+  </section>
+
+  <div id="gameModal" class="modal" hidden>
+    <div class="modal-content">
+      <button class="close" type="button" aria-label="Bezárás">✕</button>
+      <img id="modalCover" alt="" />
+      <h2 id="modalTitle"></h2>
+      <p><strong>Műfaj:</strong> <span id="modalGenre"></span></p>
+      <p><strong>Kiadó:</strong> <span id="modalPublisher"></span></p>
+      <p><strong>Platformok:</strong> <span id="modalPlatforms"></span></p>
+      <hr>
+      <p id="modalSummary"></p>
+    </div>
+  </div>
+
+  <footer>
+    <small>© <span id="year"></span> GameVerse • <a href="about.html">Kapcsolat</a></small>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-7NqV1r6j3t1Qx1N8sCwYg9YVQn2r4W4nQp2Z8aI6E5s=" crossorigin="anonymous"></script>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/home.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Navigáció a "Games" oldalra a gomb megnyomásakor
+      const btn = document.getElementById('exploreBtn');
+      if (btn) btn.addEventListener('click', () => window.location.href = 'games.html');
+    });
+  </script>
+</body>
+
+</html>

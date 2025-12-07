@@ -1,0 +1,211 @@
+[
+  {
+    "id": 1,
+    "title": "League of Legends",
+    "genre": "MOBA",
+    "platforms": ["PC"],
+    "publisher": "Riot Games",
+    "release_date": "2009-10-27",
+    "rating": 7.7,
+    "cover": "assets/leagueoflegends.jpg",
+    "slug": "league-of-legends",
+    "summary": "Ingyenes, online többjátékos MOBA, ahol bajnokok csapnak össze a stratégiai pályákon."
+  },
+ {
+    "id": 2,
+    "title": "Path of Exile",
+    "genre": "Akció RPG",
+    "platforms": [
+        "PC",
+        "PS4",
+        "Xbox One"
+    ],
+    "publisher": "Grinding Gear Games",
+    "release_date": "2013-10-23",
+    "rating": 9.6,
+    "cover": "assets/pathofexile.jpg",
+    "slug": "path-of-exile",
+    "summary": "Ingyenes, sötét hangulatú akció-RPG hatalmas passzív skill fával és mély játékrendszerrel.",
+    "details": "A Path of Exile egy sötét fantasy akciószerepjáték, ahol egy száműzöttként küzdesz a túlélésért Wraeclast kontinensén. A karakterépítés óriási szabadságot ad: a passzív képességfa és a gem-alapú aktív skillek rengeteg kombinációt tesznek lehetővé.\n\nA szezonális ligák új mechanikákkal és kihívásokkal frissítik a játékmenetet. A gazdaság barter alapú, a tárgyrendszer mély, az endgame térképrendszer pedig hosszú távú fejlődést kínál.\n\nA kihívás magas, de a jutalom is: a tanulási görbe meredek, cserébe végtelenül testreszabható karaktereket építhetsz."
+  },
+  {
+    "id": 3,
+    "title": "Cyberpunk 2077",
+    "genre": "Akció RPG",
+    "platforms": ["PC", "PS5", "Xbox Series X/S"],
+    "publisher": "CD Projekt Red",
+    "release_date": "2020-12-10",
+    "rating": 8.5,
+    "cover": "assets/cyberpunk.jpeg",
+    "slug": "cyberpunk-2077",
+    "summary": "Futurisztikus, nyílt világú szerepjáték Night City utcáin, lenyűgöző részletességgel."
+  },
+  {
+    "id": 4,
+    "title": "Yakuza 0",
+    "genre": "Akció-kaland",
+    "platforms": ["PC", "PS4", "Xbox One"],
+    "publisher": "SEGA",
+    "release_date": "2015-03-12",
+    "rating": 9.0,
+    "cover": "assets/yakuza0.jpg",
+    "slug": "yakuza-0",
+    "summary": "A Yakuza-sorozat előzménye, ahol két főhős története bontakozik ki 1980-as évek Japánjában."
+  },
+  {
+    "id": 5,
+    "title": "Judgment",
+    "genre": "Akció-kaland",
+    "platforms": [
+        "PC",
+        "PS5",
+        "Xbox Series X/S"
+    ],
+    "publisher": "SEGA / Ryu Ga Gotoku Studio",
+    "release_date": "2018-12-13",
+    "rating": 9.2,
+    "cover": "assets/judgment.jpg",
+    "slug": "judgment",
+    "summary": "Egy volt ügyvéd nyomozóként próbálja felderíteni Kamurocho sötét titkait ebben az akció-kalandjátékban.",
+    "details": "A Judgment a Yakuza-sorozat világában játszódik, de önálló történetet mesél. Főhősünk, Takayuki Yagami egykori ügyvéd, aki magánnyomozóként dolgozik, és egy brutális gyilkosságsorozat felderítésébe keveredik.\n\nA játékmenet ügyesen keveri a noir hangulatú nyomozást, a bizonyítékgyűjtést és a pörgős utcai harcokat. A látványos mozdulatok, a stílusos környezet és a minőségi szinkron mind hozzájárulnak a filmes élményhez.\n\nKamurocho tele van melléktevékenységekkel: minijátékok, mellékküldetések és karakterközpontú sztorik várnak, amelyek tovább mélyítik a világot és Yagami személyiségét."
+},
+  {
+    "id": 6,
+    "title": "Rogue Legacy 2",
+    "genre": "Roguelike",
+    "platforms": ["PC", "Switch", "Xbox"],
+    "publisher": "Cellar Door Games",
+    "release_date": "2022-04-28",
+    "rating": 8.1,
+    "cover": "assets/roguelegacy2.jpg",
+    "slug": "rogue-legacy-2",
+    "summary": "Minden utód új hős - halál után a következő generáció viszi tovább a kalandot ebben a roguelike platformerben."
+  },
+  {
+    "id": 7,
+    "title": "Ultimate Chicken Horse",
+    "genre": "Party / Platformer",
+    "platforms": ["PC", "Switch", "PS4", "Xbox One"],
+    "publisher": "Clever Endeavour Games",
+    "release_date": "2016-03-04",
+    "rating": 8.0,
+    "cover": "assets/ultimatechickenhorse.jpg",
+    "slug": "ultimate-chicken-horse",
+    "summary": "Őrült többjátékos platformer, ahol a játékosok maguk építik a pályát, miközben egymást próbálják túljárni."
+  },
+  {
+    "id": 8,
+    "title": "Baldur's Gate 3",
+    "genre": "RPG",
+    "platforms": ["PC", "PS5", "Mac"],
+    "publisher": "Larian Studios",
+    "release_date": "2023-08-03",
+    "rating": 9.1,
+    "cover": "assets/baldursgate3.jpg",
+    "slug": "baldurs-gate-3",
+    "summary": "Dungeons & Dragons alapú, mély szerepjáték hatalmas szabadsággal és lenyűgöző történetvezetéssel."
+  },
+  {
+    "id": 9,
+    "title": "Megabonk",
+    "genre": "Platformer",
+    "platforms": ["PC"],
+    "publisher": "Indie Studio",
+    "release_date": "2021-07-15",
+    "rating": 7.7,
+    "cover": "assets/megabonk.jpg",
+    "slug": "megabonk",
+    "summary": "Retro stílusú platformjáték humorral és kihívással, pixelart grafikával és színes világokkal."
+  },
+  {
+    "id": 10,
+    "title": "Sea of Thieves",
+    "genre": "Kaland / Online",
+    "platforms": ["PC", "Xbox"],
+    "publisher": "Rare / Xbox Game Studios",
+    "release_date": "2018-03-20",
+    "rating": 8.2,
+    "cover": "assets/seaofthieves.jpg",
+    "slug": "sea-of-thieves",
+    "summary": "Kalózkalandok a nyílt tengeren - felfedezés, harc és kincsásás online többjátékos világban."
+  },
+  {
+    "id": 11,
+    "title": "Stardew Valley",
+    "genre": "Szerepjáték / Szimulátor",
+    "platforms": [
+        "PC",
+        "Switch",
+        "PS4",
+        "Mobile"
+    ],
+    "publisher": "ConcernedApe",
+    "release_date": "2016-02-26",
+    "rating": 9.0,
+    "cover": "assets/stardewvalley.jpg",
+    "slug": "stardew-valley",
+    "summary": "Faluélet-szimulátor, ahol gazdálkodhatsz, barátkozhatsz és felfedezheted a környéket saját tempódban.",
+    "details": "A Stardew Valley egy bájos farm-szimulátor, amelyben egy romos gazdaságot építesz újjá. Ültetsz, aratsz, állatokat nevelsz, miközben lassan megismered Pelican Town lakóit.\n\nA játék nyitott tempójú: ha épp nem a földeken dolgozol, horgászhatsz, bányászhatsz, főzhetsz vagy részt vehetsz szezonális fesztiválokon. A kapcsolatok és történetszálak idővel kibontakoznak, így a kisváros valódi otthonná válik.\n\nKooperatív módban barátokkal is gazdálkodhattok, ami tovább növeli az élményt és a lehetőségeket."
+  },
+  {
+    "id": 12,
+    "title": "StarCraft II",
+    "genre": "Stratégia",
+    "platforms": [
+        "PC",
+        "Mac"
+    ],
+    "publisher": "Blizzard Entertainment",
+    "release_date": "2010-07-27",
+    "rating": 7.8,
+    "cover": "assets/starcraft2.jpg",
+    "slug": "starcraft-2",
+    "summary": "A Blizzard legendás valós idejű stratégiai játéka, három faj epikus háborújával és profi e-sport jelenléttel."
+},
+{
+    "id": 13,
+    "title": "Age of Empires IV",
+    "genre": "Stratégia",
+    "platforms": [
+        "PC"
+    ],
+    "publisher": "Xbox Game Studios",
+    "release_date": "2021-10-28",
+    "rating": 8.2,
+    "cover": "assets/ageofempires4.jpg",
+    "slug": "age-of-empires-4",
+    "summary": "A klasszikus sorozat visszatérése új motorral és korszerű grafikával, de a régi, taktikus játékmenettel."
+},
+{
+    "id": 14,
+    "title": "No Man's Sky",
+    "genre": "Sci-Fi",
+    "platforms": [
+        "PC",
+        "PS5",
+        "Xbox Series X/S"
+    ],
+    "publisher": "Hello Games",
+    "release_date": "2016-08-09",
+    "rating": 8.1,
+    "cover": "assets/nomanssky.jpg",
+    "slug": "no-mans-sky",
+    "summary": "Végtelen univerzum felfedezése, bolygók, életformák és bázisépítés generált világokban."
+},
+{
+    "id": 15,
+    "title": "Mass Effect Legendary Edition",
+    "genre": "Sci-Fi",
+    "platforms": [
+        "PC",
+        "PS4",
+        "Xbox One"
+    ],
+    "publisher": "BioWare / Electronic Arts",
+    "release_date": "2021-05-14",
+    "rating": 7.8,
+    "cover": "assets/masseffect.jpg",
+    "slug": "mass-effect-legendary",
+    "summary": "A Mass Effect trilógia felújított kiadása, modern grafikával és továbbfejlesztett játékmenettel, ahol döntéseid alakítják a galaxis sorsát."
+}
+]

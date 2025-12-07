@@ -1,0 +1,825 @@
+/* =========================================================
+   GameVerse - Alap stíluslap (style.css)
+   ========================================================= */
+
+/* GLOBÁLIS VÁLTOZÓK (:root)
+   Itt definiáljuk a színeket egy helyen. Ha később változtatni akarunk
+   a témán (pl. a kék színárnyalaton), csak itt kell átírni.
+*/
+:root {
+  --bg: #121212;
+  /* Fő háttérszín (nagyon sötét szürke) */
+  --card: #1b1b1b;
+  /* Kártyák és panelek háttere (kicsit világosabb) */
+  --text: #eaeaea;
+  /* Fő szövegszín (majdnem fehér) */
+  --accent: #6ee7ff;
+  /* Kiemelő szín (neon kék) - gombokhoz, linkekhez */
+  --muted: rgba(255, 255, 255, 0.08);
+  /* Halvány elválasztók és szegélyek színe */
+}
+
+/* Minden elemre érvényes alapbeállítások */
+* {
+  box-sizing: border-box;
+  /* A padding és border beleszámít a szélességbe */
+  scroll-behavior: smooth;
+  /* Finom görgetés horgony linkeknél */
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  /* Változó használata */
+  color: var(--text);
+  line-height: 1.6;
+  /* Olvashatóság javítása */
+}
+
+/* Alapértelmezett képformázás */
+img {
+  max-width: 100%;
+  /* Ne lógjon ki a konténerből */
+  height: auto;
+  /* Méretarányos maradjon */
+  display: block;
+  /* Eltünteti az alsó hézagot (inline elem esetén lenne) */
+  border-radius: 10px;
+  /* Lekerekített sarkok */
+}
+
+/* =========================================================
+   NAVIGÁCIÓS MENÜ
+   ========================================================= */
+#menu {
+  position: sticky;
+  /* Görgetéskor a képernyő tetején marad */
+  top: 0;
+  z-index: 10;
+  /* Más elemek fölé kerül */
+  background: #1c1c1c;
+  border-bottom: 1px solid var(--muted);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  /* Finom árnyék */
+}
+
+#menu .nav {
+  max-width: 1100px;
+  margin: 0 auto;
+  /* Középre igazítás */
+  padding: 12px 16px;
+  display: flex;
+  /* Flexbox a logó és a menüpontok elrendezéséhez */
+  align-items: center;
+  gap: 16px;
+}
+
+#menu a.logo {
+  font-family: 'Orbitron', sans-serif;
+  /* Sci-fi jellegű betűtípus */
+  font-weight: 800;
+  text-decoration: none;
+  color: var(--accent);
+  letter-spacing: 0.5px;
+  font-size: 20px;
+}
+
+#menu ul {
+  list-style: none;
+  margin: 0 0 0 auto;
+  /* A menüpontokat a jobb szélre tolja (auto margin) */
+  padding: 0;
+  display: flex;
+  gap: 14px;
+}
+
+#menu ul li a {
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  color: var(--text);
+  transition: background 0.2s ease, transform 0.15s ease;
+  /* Animáció hoverhez */
+}
+
+/* Hover effektus a menüpontokon */
+#menu ul li a:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+  /* Kicsit felugrik */
+}
+
+/* =========================================================
+   TIPOGRÁFIA (CÍMEK ÉS SZÖVEGEK)
+   ========================================================= */
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Orbitron', sans-serif;
+  /* Címsoroknál egyedi betűtípus */
+  color: var(--text);
+  margin-top: 0;
+}
+
+p {
+  margin-bottom: 12px;
+}
+
+/* Linkek állapota */
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #cfd8dc;
+  /* Látogatott linkek színe (kissé szürkébb) */
+}
+
+/* =========================================================
+   KÁRTYÁK ÉS ELRENDEZÉS (GRID SYSTEM)
+   ========================================================= */
+.card {
+  background: var(--card);
+  border: 1px solid var(--muted);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.card:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+  /* Finom keretvilágosodás rámutatáskor */
+}
+
+/* CSS Grid "Magic" - Automatikus oszlopszámítás
+   repeat(auto-fit, minmax(220px, 1fr)): 
+   Annyi oszlopot hoz létre, amennyi elfér. Ha nincs elég hely,
+   új sort kezd. Egy kártya min. 220px, max. 1fr (kitölti a helyet).
+*/
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+/* =========================================================
+   ADATTÁBLÁZATOK (Játékok lista)
+   ========================================================= */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  /* Szegélyek összevonása */
+  background: #161616;
+  color: var(--text);
+}
+
+thead th {
+  background: #1f1f1f;
+  text-align: left;
+  padding: 12px;
+  font-weight: 600;
+}
+
+tbody td {
+  padding: 10px 12px;
+  border-top: 1px solid var(--muted);
+}
+
+/* "Zebra" csíkozás a sorokon (minden páratlan sor sötétebb) */
+tbody tr:nth-child(odd) {
+  background: #171717;
+}
+
+tbody tr:hover {
+  background: #202020;
+  /* Sor kiemelése egérrel való rámutatáskor */
+}
+
+td.cover img {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  /* A kép kitölti a négyzetet torzítás nélkül */
+  border-radius: 10px;
+}
+
+/* Értékelés színek (JS által hozzáadott osztályok) */
+.rating.good {
+  color: #9ae6b4;
+  font-weight: 700;
+}
+
+/* Zöld */
+.rating.ok {
+  color: #f6e05e;
+  font-weight: 700;
+}
+
+/* Sárga */
+.rating.bad {
+  color: #fc8181;
+  font-weight: 700;
+}
+
+/* Piros */
+
+/* =========================================================
+   ŰRLAP ELEMEK (INPUTOK ÉS GOMBOK)
+   ========================================================= */
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="color"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #121212;
+  color: var(--text);
+  font-family: 'Poppins', sans-serif;
+  transition: border-color 0.2s ease;
+}
+
+/* Fókusz állapot (amikor kattintunk bele) */
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--accent);
+  /* Kiemelő színű keret */
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+  /* Csak függőlegesen méretezhető */
+}
+
+/* Gomb alapstílus */
+.btn {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: #222;
+  color: var(--text);
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.btn:hover {
+  background: #2a2a2a;
+  transform: translateY(-1px);
+}
+
+/* Kiemelt gomb (Accent Button) */
+.btn-accent {
+  background: var(--accent);
+  color: #0a0a0a;
+  /* Sötét szöveg a világos gombon a kontraszt miatt */
+  border: 0;
+  font-weight: 700;
+}
+
+/* Validációs hiba jelzése */
+.error {
+  border-color: #ff5c5c !important;
+  box-shadow: 0 0 0 3px rgba(255, 92, 92, 0.2);
+  /* Piros glow effekt */
+}
+
+/* Segédszöveg stílusa */
+.hint {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+/* =========================================================
+   ANIMÁCIÓK
+   ========================================================= */
+.fade-in {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+/* Egyszerű áttűnés és felcsúszás animáció definíciója */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   LÁBLÉC
+   ========================================================= */
+footer {
+  border-top: 1px solid var(--muted);
+  padding: 16px;
+  text-align: center;
+  color: #bdbdbd;
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN (MOBIL NÉZET)
+   ========================================================= */
+/* 900px szélesség alatt érvényes szabályok */
+@media (max-width: 900px) {
+  #menu ul {
+    flex-wrap: wrap;
+    /* Menüpontok tördelése */
+    justify-content: flex-end;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    /* Egyetlen oszlopba rendezés */
+  }
+
+  table {
+    font-size: 14px;
+    /* Kisebb betűméret táblázatban */
+  }
+}
+
+/* =========================================================
+   GYORS SZAVAZÁS (QUICK VOTE) KOMPONENSEK
+   ========================================================= */
+
+/* Sötétítő réteg a modal/panel mögött */
+#quickvoteOverlay {
+  position: fixed;
+  inset: 0;
+  /* top:0, right:0, bottom:0, left:0 */
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  /* Át lehet kattintani rajta, ha láthatatlan */
+  transition: opacity .25s ease;
+  z-index: 80;
+}
+
+#quickvoteOverlay.show {
+  opacity: 1;
+  pointer-events: auto;
+  /* Blokkolja a kattintást, ha látható */
+}
+
+/* Lebegő gomb (FAB - Floating Action Button) */
+.fab {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 90;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  /* Teljes kör */
+  border: 0;
+  background: var(--accent);
+  color: #0a0a0a;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, .35);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+.fab:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, .45);
+}
+
+/* Szavazó panel (jobb alsó sarokból nyílik) */
+.quickvote-panel {
+  position: fixed;
+  right: 24px;
+  bottom: 92px;
+  /* A gomb felett */
+  z-index: 95;
+  width: 320px;
+  max-height: 75vh;
+  overflow: auto;
+  background: #181818;
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 14px;
+  padding: 14px;
+  opacity: 0;
+  transform: translateY(10px) scale(.98);
+  /* Kicsit lejjebb és kisebben kezd */
+  pointer-events: none;
+  transition: opacity .25s ease, transform .25s ease;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .45);
+}
+
+/* Panel megnyitott állapota */
+.quickvote-panel.open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.quickvote-panel .panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.quickvote-panel h2 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.icon-btn {
+  background: transparent;
+  border: 0;
+  color: #eaeaea;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Panel belső formázása */
+.quickvote-panel form {
+  display: grid;
+  gap: 8px;
+}
+
+.quickvote-panel label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quickvote-panel .checkline {
+  margin-top: 8px;
+}
+
+.quickvote-panel hr {
+  border: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, .12);
+  margin: 8px 0;
+}
+
+.quickvote-panel input[type="email"] {
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.quickvote-panel .full {
+  width: 100%;
+}
+
+#emailField {
+  display: none;
+  /* Alapból rejtve (csak checkboxra jelenik meg JS-sel) */
+  background: rgba(255, 255, 255, .05);
+  padding: 8px;
+  border-radius: 8px;
+}
+
+/* Mobil nézet a lebegő panelhez */
+@media (max-width: 640px) {
+  .fab {
+    right: 16px;
+    bottom: 16px;
+    width: 50px;
+    height: 50px;
+  }
+
+  .quickvote-panel {
+    right: 8px;
+    left: 8px;
+    /* Teljes szélességben */
+    bottom: 76px;
+    width: auto;
+  }
+}
+
+/* =========================================================
+   ÉRTESÍTÉSEK (TOAST NOTIFICATIONS)
+   ========================================================= */
+.notice {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  /* Középre igazítás */
+  background: #22c55e;
+  /* Zöld háttér */
+  color: #fff;
+  font-weight: 600;
+  padding: 12px 18px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .4s ease, transform .4s ease;
+  z-index: 9999;
+}
+
+.notice.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(5px);
+  /* Becsúszás fentről */
+}
+
+/* =========================================================
+   KIEMELT JÁTÉKOK (FEATURED) SZEKCIÓ
+   ========================================================= */
+#featured {
+  margin-top: 24px;
+}
+
+#featured h2 {
+  margin: 0 0 12px;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* Fix 3 oszlop */
+  gap: 16px;
+}
+
+.featured-card {
+  background: #1b1b1b;
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.featured-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+.featured-card h3 {
+  margin: 10px 0 6px;
+  font-size: 1.05rem;
+}
+
+.featured-meta {
+  font-size: .9rem;
+  opacity: .85;
+  margin-bottom: 6px;
+}
+
+.featured-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Mobil nézet kiemelt kártyákhoz */
+@media (max-width: 900px) {
+  .featured-grid {
+    grid-template-columns: 1fr;
+    /* Egymás alá kerülnek */
+  }
+}
+
+/* =========================================================
+   MODAL (FELUGRÓ ABLAK)
+   ========================================================= */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  /* Alapból rejtve */
+  background: rgba(0, 0, 0, .7);
+  backdrop-filter: blur(2px);
+  /* Háttér homályosítása */
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  /* Középre igazítás */
+}
+
+.modal.show {
+  display: flex;
+  animation: fadeIn .25s ease;
+}
+
+.modal-content {
+  width: min(92vw, 560px);
+  /* Max 560px, de mobilon 92% széles */
+  background: #1c1c1c;
+  color: #eaeaea;
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 14px;
+  padding: 16px 18px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .45);
+  animation: slideUp .28s ease;
+  /* Alulról felcsúszó animáció */
+}
+
+.modal-content img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.modal-content h2 {
+  margin: 6px 0 8px;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.modal-content hr {
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, .12);
+  margin: 10px 0;
+}
+
+.modal .close {
+  border: 0;
+  background: transparent;
+  color: var(--accent);
+  font-size: 20px;
+  float: right;
+  cursor: pointer;
+}
+
+.modal .close:hover {
+  color: #fff;
+}
+
+/* Modal animációk */
+@keyframes fadeIn {
+  from {
+    opacity: 0
+  }
+
+  to {
+    opacity: 1
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px)
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0)
+  }
+}
+
+/* =========================================================
+   GYIK (GYAKORI KÉRDÉSEK) - HARMONIKA
+   ========================================================= */
+.faq-section {
+  max-width: 800px;
+  margin: 30px auto;
+  background: #1b1b1b;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 20px;
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.faq-question {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  color: #eaeaea;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 14px 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-question:hover {
+  color: var(--accent);
+}
+
+.faq-answer {
+  display: none;
+  /* Alapból rejtett tartalom */
+  padding: 0 10px 10px;
+  color: #cfcfcf;
+  line-height: 1.5;
+}
+
+/* JavaScript által hozzáadott .active osztályra megjelenik */
+.faq-item.active .faq-answer {
+  display: block;
+  animation: fadeIn .3s ease;
+}
+
+.faq-item.active .arrow {
+  transform: rotate(90deg);
+  /* Nyíl elforgatása */
+  transition: transform .3s ease;
+}
+
+.arrow {
+  transition: transform .3s ease;
+  font-size: 18px;
+}
+
+/* =========================================================
+   SPECIÁLIS KÉP STÍLUSOK ÉS EGYEBEK
+   ========================================================= */
+.card img,
+.featured-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+.hero-image {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin: 20px 0;
+  display: block;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+  /* Neon ragyogás */
+}
+
+.setup-image {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 12px;
+  display: block;
+  margin: 20px auto;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
+}
+
+/* Csapat szekció – nagyobb portrék */
+#team .card img {
+  width: 100%;
+  height: 350px;
+  /* Nagyított portrék */
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+#team .card img:hover {
+  transform: scale(1.03);
+  /* Kép enyhe nagyítása hover-re */
+  box-shadow: 0 0 25px rgba(0, 255, 255, .20);
+}
+
+/* Csapat képek mobilon */
+@media (max-width: 900px) {
+  #team .card img {
+    height: 220px;
+  }
+}
+
+/* Színválasztó (Input type color) testreszabása */
+#logoColorPicker {
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: 10px;
+  background: none;
+  outline: none;
+  padding: 0;
+}
+
+/* Webkit (Chrome/Safari) specifikus formázás a színkörhöz */
+#logoColorPicker::-webkit-color-swatch {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+}
+
+#logoColorPicker::-webkit-color-swatch-wrapper {
+  padding: 0;
+}

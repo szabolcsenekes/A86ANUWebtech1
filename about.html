@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GameVerse - Rólunk</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+
+  <link rel="stylesheet" href="css/style.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Poppins:wght@300;400;600&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --accent: #6ee7ff;
+    }
+
+    body {
+      margin: 0;
+      background: #121212;
+      color: #eaeaea;
+      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.6;
+      /* Háttérkép beállítása fix pozícióval */
+      background-image: url("assets/background.png");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    /* MENÜ (Globális stílus) */
+    #menu {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #1c1c1c;
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    #menu .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    #menu a.logo {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 800;
+      text-decoration: none;
+      color: var(--accent);
+    }
+
+    #menu ul {
+      list-style: none;
+      margin: 0 0 0 auto;
+      padding: 0;
+      display: flex;
+      gap: 14px;
+    }
+
+    #menu ul li a {
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 10px;
+      color: #eaeaea;
+    }
+
+    #menu ul li a:hover {
+      background: rgba(255, 255, 255, .08);
+    }
+
+    /* FŐ TARTALOM */
+    main {
+      max-width: 1100px;
+      margin: 20px auto;
+      padding: 0 16px 60px;
+    }
+
+    .page-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .page-title h1 {
+      font-family: 'Orbitron', sans-serif;
+      margin: 0;
+    }
+
+    .hint {
+      font-size: 12px;
+      opacity: .8;
+    }
+
+    /* HŐS SZEKCIÓ (HERO) */
+    /* Kétoszlopos elrendezés (szöveg + kép helye, ha lenne kép az HTML-ben) */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 20px;
+      align-items: center;
+      margin: 10px 0 20px;
+    }
+
+    .hero img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 14px;
+    }
+
+    /* CSAPAT KÁRTYÁK - RESPONSIVE GRID */
+
+    .team {
+      /* Ez a sor a "varázslat": 
+          automatikusan annyi oszlopot hoz létre, amennyi elfér, 
+         de egy kártya sem lesz kisebb 220px-nél. */
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    .card {
+      background: #1b1b1b;
+      border: 1px solid rgba(255, 255, 255, .06);
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .card h3 {
+      margin: 0 0 6px;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .member img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 10px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .role {
+      font-size: 12px;
+      opacity: .85;
+    }
+
+    /* HÁZIREND (POLICY) */
+    #policy {
+      margin-top: 28px;
+    }
+
+    /* Két oszlop a szabályoknak */
+    #policy .rules {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    #policy .rules .card ul,
+    #policy .rules .card ol {
+      padding-left: 18px;
+    }
+
+    /* Link stílus demó (általános linkekre) */
+    a {
+      color: var(--accent);
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* "VISSZA A TETEJÉRE" GOMB */
+    #toTop {
+      position: fixed;
+      /* A képernyőhöz képest rögzített */
+      right: 16px;
+      bottom: 16px;
+      z-index: 20;
+      /* Mindig felül */
+      display: none;
+      /* Alapból rejtett (JS jeleníti meg görgetéskor) */
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 14px;
+      background: var(--accent);
+      color: #0a0a0a;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, .35);
+    }
+
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, .08);
+      padding: 16px;
+      text-align: center;
+      color: #bdbdbd;
+      margin-top: 28px;
+    }
+
+    /* MOBIL NÉZET */
+    /* 900px alatt a kétoszlopos grid-ek egyoszloposra váltanak */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      #policy .rules {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header id="menu" role="navigation" aria-label="Fő navigáció">
+    <div class="nav">
+      <a class="logo" href="index.html">GameVerse</a>
+      <ul>
+        <li><a href="index.html">Főoldal</a></li>
+        <li><a href="games.html">Játékok</a></li>
+        <li><a href="review.html">Vélemények</a></li>
+        <li><a href="about.html" aria-current="page">Rólunk</a></li>
+        <li><a href="media.html">Videók</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-title">
+      <h1>Rólunk</h1>
+      <p class="hint">Ismerd meg a GameVerse csapatát és irányelveinket.</p>
+    </div>
+
+    <section class="hero">
+      <div>
+        <h2>Küldetésünk</h2>
+        <p>
+          A <strong>GameVerse</strong> célja, hogy <span style="color:var(--accent); font-weight:700;">közösségi</span>
+          térként
+          szolgáljon a játékosoknak: hiteles bemutatók, részletes értékelések, tippek és inspiráló listák.
+        </p>
+        <p>
+          Elérsz minket: <a href="mailto:hello@gameverse.example">hello@gameverse.example</a> •
+          Kövess: <a href="https://example.com/discord">Discord</a> · <a href="https://example.com/youtube">YouTube</a>
+          · <a href="https://example.com/x">X</a>
+        </p>
+      </div>
+    </section>
+
+    <section id="team" aria-label="Csapat">
+      <h2>Csapatunk</h2>
+      <div class="team">
+        <article class="card member" id="szabi">
+          <img src="assets/szabi.png" alt="Szabi - főszerkesztő">
+          <h3>Szabi</h3>
+          <p class="role">Főszerkesztő</p>
+          <p>Kedvencek: akció-RPG, cyberpunk világok.</p>
+          <p><a href="mailto:szabi@gameverse.example">Kapcsolat</a></p>
+        </article>
+        <article class="card member" id="reka">
+          <img src="assets/reka.png" alt="Réka - technikai szerkesztő">
+          <h3>Réka</h3>
+          <p class="role">Technikai szerkesztő</p>
+          <p>Benchmarkok, teljesítménytesztek, PC tippek.</p>
+          <p><a href="mailto:reka@gameverse.example">Kapcsolat</a></p>
+        </article>
+        <article class="card member" id="bende">
+          <img src="assets/bende.jpg" alt="Bendegúz - fun factor/moderátor">
+          <h3>Bende</h3>
+          <p class="role">Közösségi menedzser</p>
+          <p>Moderáció, események, közösségi kezdeményezések.</p>
+          <p><a href="mailto:bende@gameverse.example">Kapcsolat</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section id="policy" aria-label="Közösségi házirend">
+      <h2>Közösségi házirend</h2>
+      <div class="rules">
+        <div class="card">
+          <h3>Alapelvek</h3>
+          <ul>
+            <li>Tisztelet és kulturált kommunikáció.</li>
+            <li>Spoiler megjelölése és kerülése, ahol lehet.</li>
+            <li>Forrásmegjelölés képek és adatok esetén.</li>
+            <li>Nincs személyeskedés vagy gyűlöletbeszéd.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Moderáció menete</h3>
+          <ol>
+            <li>Figyelmeztetés és útmutatás.</li>
+            <li>Ideiglenes hozzászólás-korlátozás.</li>
+            <li>Végleges kitiltás ismételt szabálysértésnél.</li>
+          </ol>
+        </div>
+      </div>
+      <p class="hint">Részletekért írj nekünk: <a
+          href="mailto:moderation@gameverse.example">moderation@gameverse.example</a></p>
+    </section>
+
+    <section class="faq-section" aria-label="Gyakori kérdések">
+      <h2>Gyakori kérdések</h2>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Hogyan tudok véleményt írni?
+          <span class="arrow">▶</span>
+        </button>
+        <div class="faq-answer">
+          <p>A „Vélemények” menüpontban található űrlapot kitöltve bármilyen játékról megoszthatod a tapasztalataidat.
+            Ne
+            felejts el minden mezőt kitölteni, mielőtt elküldöd!</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Hogyan működik a gyors szavazás?
+          <span class="arrow">▶</span>
+        </button>
+        <div class="faq-answer">
+          <p>A főoldalon található mini szavazásban kiválaszthatod, melyik műfajt kedveled legjobban. A szavazás anonim,
+            és
+            nem tárol semmilyen személyes adatot.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Lesznek új játékok az oldalon?
+          <span class="arrow">▶</span>
+        </button>
+        <div class="faq-answer">
+          <p>Igen, a GameVerse csapata folyamatosan bővíti a kínálatot. Minden héten új ajánlások, friss értékelések és
+            toplisták kerülnek fel.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <button id="toTop" type="button" aria-label="Ugrás az oldal tetejére">↑ Top</button>
+
+  <footer>
+    <small>© <span id="year"></span> GameVerse • <a href="index.html">Ugrás a menühöz</a></small>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/about.js"></script>
+
+</body>
+
+</html>
